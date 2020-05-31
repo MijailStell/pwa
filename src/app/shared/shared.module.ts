@@ -7,13 +7,15 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HeaderComponent } from './components/header/header.component';
 import { PageNotPermittedComponent } from './components/page-not-permitted/page-not-permitted.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { SearchComponent } from './modal/search/search.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     PageNotFoundComponent,
     PageNotPermittedComponent,
-    LoadingComponent
+    LoadingComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     PageNotFoundComponent,
     PageNotPermittedComponent,
     LoadingComponent
-  ]
+  ],
+  entryComponents: [ SearchComponent]
 })
 export class SharedModule { }

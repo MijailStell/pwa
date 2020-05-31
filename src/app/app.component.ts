@@ -7,6 +7,8 @@ import { mapTo } from 'rxjs/operators';
 import { Constantes } from './shared/util/constantes';
 declare var $: any;
 import videojs from 'video.js';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { SearchComponent } from './shared/modal/search/search.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +25,8 @@ export class AppComponent implements OnInit {
   constructor(
               public globalService: GlobalService,
               private router: Router,
-              private location: Location) { 
+              private location: Location,
+              public dialog: MatDialog) { 
     this.online$ = merge(
       of(navigator.onLine),
       fromEvent(window, 'online').pipe(mapTo(true)),
@@ -59,7 +62,10 @@ export class AppComponent implements OnInit {
     this.router.navigate([Constantes.RutaBaseAdmin]);
   }
 
-  openSearch(){
-    
+  openDialogSearch() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.panelClass = 'custom-dialog';
+    const dialogRef = this.dialog.open(SearchComponent, dialogConfig);
   }
 }

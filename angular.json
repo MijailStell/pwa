@@ -30,9 +30,16 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/styles/custom-theme.scss",
+              "src/assets/styles/main.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/webApp.js",
+              "src/assets/js/video.js",
+              "src/assets/js/Youtube.min.js"
+            ]
           },
           "configurations": {
             "production": {

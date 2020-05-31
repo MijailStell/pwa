@@ -1,0 +1,30 @@
+
+.error-container{
+    color: #0091ea;
+    height: calc(100vh - 75px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 150px;
+}
+
+.error-title{
+    font-size: 5em;
+    font-weight: bold;
+}
+
+.error-msg{
+    font-size: 1.2em;
+    max-width: 250px;
+}
+
+.error-link{
+    color: #0091ea;
+    font-size: 2em;
+    text-decoration: none;
+}
+
+.error-img{
+    max-width: 50px;
+    fill: #0091ea;
+}

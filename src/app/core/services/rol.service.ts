@@ -23,12 +23,12 @@ export class RolService extends BaseService {
   }
 
   getAssignment(paginator: any): Observable<IJsonResult<TableResponse>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}Rol/assignment`;
+    const url = `${this.enviromentService.apiUrl}Rol/assignment`;
     return this.httpClient.post<IJsonResult<TableResponse>>(url, paginator);
   }
 
   getRoles(): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}Rol/all`;
+    const url = `${this.enviromentService.apiUrl}Rol/all`;
     return this.httpClient.get<IJsonResult<any>>(url);
   }
 }

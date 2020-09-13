@@ -22,27 +22,27 @@ export class TablaService extends BaseService {
   }
 
   getBermas(): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}Tabla/berma`;
+    const url = `${this.enviromentService.apiUrl}Tabla/berma`;
     return this.httpClient.get<IJsonResult<any>>(url);
   }
 
   getVias(): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}Tabla/via`;
+    const url = `${this.enviromentService.apiUrl}Tabla/via`;
     return this.httpClient.get<IJsonResult<any>>(url);
   }
 
   getConstrucciones(): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}Tabla/construccion`;
+    const url = `${this.enviromentService.apiUrl}Tabla/construccion`;
     return this.httpClient.get<IJsonResult<any>>(url);
   }
 
   getOrdenes(): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}Tabla/orden`;
+    const url = `${this.enviromentService.apiUrl}Tabla/orden`;
     return this.httpClient.get<IJsonResult<any>>(url);
   }
 
   getRedes(): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}Tabla/red`;
+    const url = `${this.enviromentService.apiUrl}Tabla/red`;
     return this.httpClient.get<IJsonResult<any>>(url);
   }
 }

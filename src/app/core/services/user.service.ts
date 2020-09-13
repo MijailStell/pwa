@@ -19,7 +19,7 @@ export class UserService extends BaseCrudService<Usuario> {
 
   getPermisos(id: number): Observable<IJsonResult<any>> {
     const url = `${
-      this.enviromentService.urlBaseServiciosApi
+      this.enviromentService.apiUrl
     }Usuario/${id}/permisos`;
     return this.http.get<IJsonResult<any>>(url);
   }

@@ -28,7 +28,7 @@
 <div class="container">
     <form>
         <mat-form-field>
-            <mat-placeholder>Buscar Youtube</mat-placeholder>
+            <mat-placeholder>Buscar Youtube {{connectionId}}</mat-placeholder>
             <input matInput type="search">
             <button mat-raised-button color="primary" (click)="openDialogSearch()" matSuffix mat-stroked-button aria-label="search">
                 <mat-icon>search</mat-icon>
@@ -39,6 +39,6 @@
         class="video-js vjs-big-play-centered"
         controls
         data-setup='{ "techOrder": ["youtube", "html5"] }'>
-        <source src="https://www.youtube.com/watch?v=sem5xr_wezM" type="video/youtube">
+        <source [src]="videoUrl | secureDomain" type="video/youtube">
     </video>
 </div>

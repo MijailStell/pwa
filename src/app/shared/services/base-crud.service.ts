@@ -21,47 +21,47 @@ export class BaseCrudService<T> {
               public controller: string) { }
 
   getAll(paginator: any): Observable<IJsonResult<TableResponse>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}${
+    const url = `${this.enviromentService.apiUrl}${
       this.controller
     }/filter`;
     return this.http.post<IJsonResult<TableResponse>>(url, paginator);
   }
 
   get(id: number): Observable<IJsonResult<T>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}${
+    const url = `${this.enviromentService.apiUrl}${
       this.controller
     }/${id}`;
     return this.http.get<IJsonResult<T>>(url);
   }
 
   add(entity: T): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}${this.controller}`;
+    const url = `${this.enviromentService.apiUrl}${this.controller}`;
     return this.http.post<IJsonResult<any>>(url, entity);
   }
 
   update(id: number, entity: T): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}${
+    const url = `${this.enviromentService.apiUrl}${
       this.controller
     }/${id}`;
     return this.http.put<IJsonResult<any>>(url, entity);
   }
 
   delete(id: number): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}${
+    const url = `${this.enviromentService.apiUrl}${
       this.controller
     }/${id}`;
     return this.http.delete<IJsonResult<any>>(url);
   }
 
   updateState(id: number, status: boolean): Observable<IJsonResult<any>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}${
+    const url = `${this.enviromentService.apiUrl}${
       this.controller
     }/updateStatus/${id}`;
     return this.http.put<IJsonResult<any>>(url, { id, Estado: status });
   }
 
   search(search: string): Observable<IJsonResult<IOption[]>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}${
+    const url = `${this.enviromentService.apiUrl}${
       this.controller
     }/search/${search}`;
     return this.http.get<IJsonResult<any>>(url);

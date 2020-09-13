@@ -34,7 +34,7 @@ export class AuthService extends BaseService {
    * @param usuarioLoginRequest Objeto que envía datos para realizar autenticación
    */
   login(usuarioLoginRequest: IUsuarioLoginRequest): Observable<IJsonResult<IUsuarioLoginResponse>> {
-    const url = `${this.enviromentService.urlBaseServiciosApi}login/autenticar`;
+    const url = `${this.enviromentService.apiUrl}login/autenticar`;
     this.globalService.removeAuthorizationToken();
     return this.httpClient.post<IJsonResult<IUsuarioLoginResponse>>(url, usuarioLoginRequest, this.httpOptions);
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Observable, merge, of, fromEvent } from 'rxjs';
+import { Observable, merge, of, fromEvent, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { GlobalService } from './shared/services/global.service';
 import { mapTo } from 'rxjs/operators';
@@ -9,6 +9,9 @@ declare var $: any;
 import videojs from 'video.js';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { SearchComponent } from './shared/modal/search/search.component';
+import { SignalRService } from './shared/services/signal-r.service';
+import { EventBusService } from './shared/services/event-bus.service';
+import { ActionEvent } from './shared/enum/action-event';
 
 @Component({
   selector: 'app-root',
@@ -21,12 +24,17 @@ export class AppComponent implements OnInit {
   networkStatus: string;
   username: string = this.globalService.getStoredUser();
   totalSize: number;
+  eventbusConnectedSub: Subscription;
+  connectionId = '';
+  videoUrl = 'https://www.youtube.com/watch?v=sem5xr_wezM';
 
   constructor(
               public globalService: GlobalService,
+              public signalRService: SignalRService,
+              private eventBus: EventBusService,
               private router: Router,
               private location: Location,
-              public dialog: MatDialog) { 
+              public dialog: MatDialog) {
     this.online$ = merge(
       of(navigator.onLine),
       fromEvent(window, 'online').pipe(mapTo(true)),
@@ -37,13 +45,19 @@ export class AppComponent implements OnInit {
 
   public setNetworkStatus() {
     this.online$.subscribe(value => {
-      this.networkStatus = value? Constantes.Vacio: `(${Constantes.Offline})`;
+      this.networkStatus = value ? Constantes.Vacio : `(${Constantes.Offline})`;
       localStorage.setItem(Constantes.NetworkStatus, JSON.stringify(value));
-    })
+    });
   }
 
   ngOnInit() {
-
+    this.signalRService.startConnection('chatHub');
+    this.signalRService.addConnectedListener();
+    this.signalRService.addDisconnectedListener();
+    this.signalRService.addLoggedListener();
+    this.eventbusConnectedSub = this.eventBus.on(ActionEvent.Connected, ((connectionId: string) => {
+      this.connectionId = connectionId;
+    }));
   }
 
   back() {
@@ -55,7 +69,6 @@ export class AppComponent implements OnInit {
   }
 
   cerrarSesion() {
-    
   }
 
   goToAdmin() {

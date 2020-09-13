@@ -1,24 +1,27 @@
 import { EnviromentService } from './enviroment.service';
-import { Constantes } from '../util/constantes';
 
 export const EnviromentServiceFactory = () => {
-  // Create Enviroment
-  const enviroment = new EnviromentService();
+  // Create env
+  const env = new EnviromentService();
 
-  // Read Environment variables from browser window
-  const browserWindow = window || {};
-  const browserWindowEnviromet = browserWindow[Constantes.Enviroment] || {};
+  // Read environment variables from browser window
+  const defaultWindow = {
+    __env: null
+  };
+  Object.assign(defaultWindow, window);
+  const browserWindow = defaultWindow || defaultWindow;
+  const browserWindowEnv = browserWindow.__env || {};
 
-  // Assign Environment variables from browser window to Enviroment
-  // In the current implementation, properties from config.js overwrite defaults from the EnvService.
+  // Assign environment variables from browser window to env
+  // In the current implementation, properties from env.js overwrite defaults from the EnvService.
   // If needed, a deep merge can be performed here to merge properties instead of overwriting them.
-  for (const key in browserWindowEnviromet) {
-    if (browserWindowEnviromet.hasOwnProperty(key)) {
-      enviroment[key] = window[Constantes.Enviroment][key];
+  for (const key in browserWindowEnv) {
+    if (browserWindowEnv.hasOwnProperty(key)) {
+      env[key] = defaultWindow.__env[key];
     }
   }
 
-  return enviroment;
+  return env;
 };
 
 export const EnviromentServiceProvider = {
